@@ -33,8 +33,9 @@ export class BuildService {
         shell.cd(params.projectDir);
 
         //Create the temp folder if it doesn't exist
-        if(!fs.existsSync(path.join(params.projectDir, 'temp'))) {
-            shell.mkdir('temp');
+        let tempFolder = path.join(params.projectDir, 'temp');
+        if(!fs.existsSync(tempFolder)) {
+            shell.mkdir(tempFolder);
         }
 
         //Delete the build repo folder if it exists
@@ -48,7 +49,7 @@ export class BuildService {
         //
 
         //cd into the temp folder
-        shell.cd('temp');
+        shell.cd(tempFolder);
 
         //Check out the build repo source
         shell.exec(`git clone --progress --verbose --branch=${params.buildRepoTag} ${targetConfig.buildRepoUrl} ${targetConfig.cloneFolder}`);
