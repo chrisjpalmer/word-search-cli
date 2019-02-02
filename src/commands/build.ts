@@ -32,7 +32,7 @@ export default class Build extends Command {
       this.error('This is not a project directory. You can make it one by running "word_search_cli init"')
     }
 
-    if(!await cli.confirm('Did you run "docker-machine env" in this shell before this command? In other words will docker commands work?')) {
+    if(!await cli.confirm('Have you run "docker-machine env" in this shell prior to this command? Will calls to the docker daemon work from this shell? (y/n)')) {
       this.log('please run docker-machine env XXX')
       this.exit();
     }
