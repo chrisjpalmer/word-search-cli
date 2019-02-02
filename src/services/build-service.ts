@@ -32,14 +32,16 @@ export class BuildService {
         //Cd into the project directory
         shell.cd(params.projectDir);
 
-        //Delete the temp folder
-        let tempFolder = path.join(params.projectDir, 'temp');
-        if (!!fs.existsSync(tempFolder)) {
-            await deleteFolder(tempFolder);
+        //Create the temp folder if it doesn't exist
+        if(!fs.existsSync(path.join(params.projectDir, 'temp'))) {
+            shell.mkdir('temp');
         }
 
-        //Create the temp folder again
-        shell.mkdir('temp');
+        //Delete the build repo folder if it exists
+        let repoFolder = path.join(params.projectDir, 'temp', targetConfig.cloneFolder);
+        if (!!fs.existsSync(repoFolder)) {
+            await deleteFolder(repoFolder);
+        }
 
         //
         //Get Build Repo
