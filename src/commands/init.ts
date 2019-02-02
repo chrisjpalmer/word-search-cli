@@ -16,7 +16,7 @@ export default class Init extends Command {
 
     //Initialize the word-search-project in the current directory
     if(!!getProjectDir()) {
-      this.error('cant initialize a word search project here because this is either a subdirectory or the main directory of an existing project');
+      this.error('Can\'t initialize a project here because this is either a subdirectory or the main directory of an existing project');
     }
 
     makeProjectDir();
