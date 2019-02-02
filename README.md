@@ -1,107 +1,35 @@
-word-search-cli
-===============
+# Word Search CLI
+## Introduction
+This is the `word_search_cli` which allows you to build, test and containerize the source for `word_search_api` and `word_search_system`.
+The CLI requires Node JS, so please ensure that it is installed.
 
 
+## Build Docker Images
+You can build from the source easily using the cli which ships with word_search:
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/word-search-cli.svg)](https://npmjs.org/package/word-search-cli)
-[![Downloads/week](https://img.shields.io/npm/dw/word-search-cli.svg)](https://npmjs.org/package/word-search-cli)
-[![License](https://img.shields.io/npm/l/word-search-cli.svg)](https://github.com/chrisjpalmer/word-search-cli/blob/master/package.json)
-
-<!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
-# Usage
-<!-- usage -->
-```sh-session
-$ npm install -g word-search-cli
-$ word-search-cli COMMAND
-running command...
-$ word-search-cli (-v|--version|version)
-word-search-cli/0.0.0 win32-x64 node-v10.15.0
-$ word-search-cli --help [COMMAND]
-USAGE
-  $ word-search-cli COMMAND
-...
-```
-<!-- usagestop -->
-# Commands
-<!-- commands -->
-* [`word-search-cli build TARGET`](#word-search-cli-build-target)
-* [`word-search-cli hello [FILE]`](#word-search-cli-hello-file)
-* [`word-search-cli help [COMMAND]`](#word-search-cli-help-command)
-* [`word-search-cli init [FILE]`](#word-search-cli-init-file)
-
-## `word-search-cli build TARGET`
-
-describe the command here
-
-```
-USAGE
-  $ word-search-cli build TARGET
-
-ARGUMENTS
-  TARGET  (word-search-system|word-search-api) the target to build
-
-OPTIONS
-  -h, --help                       show CLI help
-  --build-repo-tag=build-repo-tag  (required) the tag of the build repo which will be used to build the target
-  --src-repo-tag=src-repo-tag      (required) the source code tag to build in conjunction with the build-repo
+### Clone CLI Tool and Install it
+To install it, clone the source and run `npm link` command in the source directory.
+If at any time you want to uninstall it, simply run `npm unlink` from the source directory
+```sh
+git clone https://github.com/chrisjpalmer/word_search_cli && cd word_search_cli && npm link
 ```
 
-_See code: [src\commands\build.ts](https://github.com/chrisjpalmer/word-search-cli/blob/v0.0.0/src\commands\build.ts)_
-
-## `word-search-cli hello [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ word-search-cli hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ word-search-cli hello
-  hello world from ./src/hello.ts!
+### Find a blank directory for the project
+The CLI needs some scratch space to build your project. Find a nice directory and `cd` into it. Then run `word_search_cli init`
+```sh
+cd /my/blank/proj/dir #specify a blank project directory
+word_search_cli init #initializes a new word_search_proj in your current directory
 ```
 
-_See code: [src\commands\hello.ts](https://github.com/chrisjpalmer/word-search-cli/blob/v0.0.0/src\commands\hello.ts)_
-
-## `word-search-cli help [COMMAND]`
-
-display help for word-search-cli
-
-```
-USAGE
-  $ word-search-cli help [COMMAND]
-
-ARGUMENTS
-  COMMAND  command to show help for
-
-OPTIONS
-  --all  see all commands in CLI
+### Prepare Docker Machine
+The CLI uses docker to build the image for your target. Ensure that your shell is setup to talk with a docker machine.
+If you have docker installed the normal way on your machine (i.e. not docker toolbox), you won't need to run this command.
+```sh
+eval $(docker-machine env default) #Linux or Mac
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src\commands\help.ts)_
-
-## `word-search-cli init [FILE]`
-
-describe the command here
-
+### Build source via the CLI
+```sh
+word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_api #see https://github.com/chrisjpalmer/word_search_api for more tags
+word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_system #see https://github.com/chrisjpalmer/word_search_system for more tags
 ```
-USAGE
-  $ word-search-cli init [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-```
-
-_See code: [src\commands\init.ts](https://github.com/chrisjpalmer/word-search-cli/blob/v0.0.0/src\commands\init.ts)_
-<!-- commandsstop -->
