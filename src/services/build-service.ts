@@ -68,15 +68,15 @@ export class BuildService {
         //
         //Docker push
         //
-        if (!await cli.confirm('\n\n\nWe will now perform docker push, would you like to proceed?')) {
-            console.log('not running docker push')
-            return;
-        }
-        if (!await cli.confirm('Are you logged in as chrisjpalmer? You cannot perform push if you are not logged in as chrisjpalmer.')) {
-            console.log('not running docker push')
-            return;
-        }
-        dockerPush(targetConfig.imageName, params.srcRepoTag);
+        // if (!await cli.confirm('\n\n\nWe will now perform docker push, would you like to proceed?')) {
+        //     console.log('not running docker push')
+        //     return;
+        // }
+        // if (!await cli.confirm('Are you logged in as chrisjpalmer? You cannot perform push if you are not logged in as chrisjpalmer.')) {
+        //     console.log('not running docker push')
+        //     return;
+        // }
+        // dockerPush(targetConfig.imageName, params.srcRepoTag);
     }
 
     private getTargetConfig(target: BuildTarget): TargetConfig {

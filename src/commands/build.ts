@@ -29,7 +29,7 @@ export default class Build extends Command {
     //We need a working directory
     let projectDir = getProjectDir();
     if(!projectDir) {
-      this.error('This is not a project directory. Please create one by running "word_search_cli init"')
+      this.error('This is not a project directory. You can make it one by running "word_search_cli init"')
     }
 
     if(!await cli.confirm('Did you run "docker-machine env" in this shell before this command? In other words will docker commands work?')) {
